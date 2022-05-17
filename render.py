@@ -7,6 +7,7 @@ import random
 import sys
 from zipfile import ZipFile
 from makeZip import makeZipFile
+import uploadToBeatstars
 
 def basic(split):
     sleep(2)
@@ -279,5 +280,16 @@ for counter3 in range(len(toBeAdded)):
 
 print("Closing program.")
 print("All the matching STEMS files have been automatically been put into zip folders.")
+
+while(1):
+    uploadAnswer = str(input("Would you like to upload these files to Beatstars and Youtube?: "))
+    if uploadAnswer == 'Y':
+        exec(open(r'C:\Users\samlb\Documents\BEATSTARS_PYTHON_SELENIUM_CURRENT\uploadToBeatstars\uploadToBeatstars.py').read())
+        break
+    elif uploadAnswer == 'N':
+        break
+    else:
+        print("Please type either Y or N (cap sensitive")
+
 print("You will never see this instance of this executable again in 5 seconds, so say farewell.")
 sleep(5)
