@@ -5,6 +5,8 @@ from os import walk
 import os
 import random
 import sys
+from zipfile import ZipFile
+from makeZip import makeZipFile
 
 def basic(split):
     sleep(2)
@@ -260,6 +262,13 @@ for counter3 in range(len(toBeAdded)):
     sleep(1)
     pyautogui.hotkey('ctrl','r')
     basic(True)
+
+    #Put all files with STEM - name into a zip folder
+    myZipFile = ZipFile('beatTitle.zip', 'w')
+    makeZipFile(name)
+    allStemFiles = next(walk("C:\\Users\\samlb\\Documents\\Image-Line\\FL Studio\\Projects\\finished\\UPLOAD"), (None, None, []))[2]
+
+    myZipFile
 
     with open('rendered.txt', 'a') as f:
         f.writelines(''.join(str(toBeAdded[counter3])))
