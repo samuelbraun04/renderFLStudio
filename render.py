@@ -7,7 +7,7 @@ import random
 import sys
 from zipfile import ZipFile
 from makeZip import makeZipFile
-import uploadToBeatstars
+#import uploadToBeatstars
 
 def basic(split):
     sleep(2)
@@ -108,7 +108,8 @@ for counter3 in range(len(toBeAdded)):
 
     sleep(5)
 
-    print(toBeAdded)
+    print("The following "+str(len(toBeAdded)-counter3)+" files still need to be rendered: ")
+    print(toBeAdded[counter3:])
     if ((pyautogui.locateOnScreen('doYouSave.png') != None) or (pyautogui.locateOnScreen('doYouSaveTwo.png') != None) or (pyautogui.locateOnScreen('doYouSaveThree.png') != None) or (pyautogui.locateOnScreen('doYouSaveFour.png') != None) or (pyautogui.locateOnScreen('doYouSaveFive.png') != None) or (pyautogui.locateOnScreen('doYouSaveSix.png') != None)):
         print('FL Studio needs to be saved')
         sleep(1)
@@ -274,9 +275,9 @@ for counter3 in range(len(toBeAdded)):
         f.writelines(''.join(str(beatTitle+'.flp')))
 
     if (counter3 == 0):
-        print(str(counter3+1) + " beat has been uploaded.")
+        print(str(counter3+1) + " beat has been rendered.")
     else:
-        print(str(counter3+1) + " beats have been uploaded.")
+        print(str(counter3+1) + " beats have been rendered.")
 
 print("Closing program.")
 print("All the matching STEMS files have been automatically been put into zip folders.")
@@ -284,7 +285,7 @@ print("All the matching STEMS files have been automatically been put into zip fo
 while(1):
     uploadAnswer = str(input("Would you like to upload these files to Beatstars and Youtube?: "))
     if uploadAnswer == 'Y':
-        exec(open(r'C:\Users\samlb\Documents\BEATSTARS_PYTHON_SELENIUM_CURRENT\uploadToBeatstars\uploadToBeatstars.py').read())
+        exec(open(r'C:\Users\samlb\Documents\BEATSTARS_PYTHON_SELENIUM_CURRENT\uploadToBeatstars.py').read())
         break
     elif uploadAnswer == 'N':
         break
