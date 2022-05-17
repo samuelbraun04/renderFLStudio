@@ -105,7 +105,7 @@ for counter3 in range(len(toBeAdded)):
             print("FL Studio is open")
             getOut = True
 
-    sleep(4)
+    sleep(5)
 
     print(toBeAdded)
     if ((pyautogui.locateOnScreen('doYouSave.png') != None) or (pyautogui.locateOnScreen('doYouSaveTwo.png') != None) or (pyautogui.locateOnScreen('doYouSaveThree.png') != None) or (pyautogui.locateOnScreen('doYouSaveFour.png') != None) or (pyautogui.locateOnScreen('doYouSaveFive.png') != None) or (pyautogui.locateOnScreen('doYouSaveSix.png') != None)):
@@ -278,6 +278,6 @@ for counter3 in range(len(toBeAdded)):
         print(str(counter3+1) + " beats have been uploaded.")
 
 print("Closing program.")
-print("Remember to turn all the matching STEMS files into zip folders.")
+print("All the matching STEMS files have been automatically been put into zip folders.")
 print("You will never see this instance of this executable again in 5 seconds, so say farewell.")
 sleep(5)

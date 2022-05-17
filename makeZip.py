@@ -19,3 +19,5 @@ def makeZipFile(name, beatTitle):
 
     for counter1 in range(len(allStemFiles)):
         os.remove(allStemFiles[counter1])
+
+    os.chdir("C:\\Users\\samlb\\Documents\\FLSTUDIO20_PYTHON_PYAUTOGUI")
