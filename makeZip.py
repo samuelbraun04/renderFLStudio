@@ -1,17 +1,21 @@
 from zipfile import ZipFile
-from os import walk
+import os
 
-def makeZipFile(name):
-    allFiles = next(walk("C:\\Users\\samlb\\Documents\\Image-Line\\FL Studio\\Projects\\finished\\UPLOAD"), (None, None, []))[2]
+def makeZipFile(name, beatTitle):
+    os.chdir("C:\\Users\\samlb\\Documents\\Image-Line\\FL Studio\\Projects\\finished\\UPLOAD")
+    allFiles = next(os.walk("."), (None, None, []))[2]
     allStemFiles = []
 
     for counter in range(len(allFiles)):
-        if str('STEMS - '+name) in allFiles[counter]:
+        if str('STEMS - '+str(name)) in allFiles[counter]:
             allStemFiles.append(allFiles[counter])
 
-    myZipFile = ZipFile(r'C:\Users\samlb\Documents\Image-Line\FL Studio\Projects\finished\UPLOAD\beatTitle.zip', 'w')
+    myZipFile = ZipFile(str(beatTitle)+'.zip', 'w')
 
     for counter in range(len(allStemFiles)):
-        myZipFile.write('C:\\Users\\samlb\\Documents\\Image-Line\\FL Studio\\Projects\\finished\\UPLOAD\\'+allStemFiles[counter])
+        myZipFile.write(allStemFiles[counter])
 
     myZipFile.close()
+
+    for counter1 in range(len(allStemFiles)):
+        os.remove(allStemFiles[counter1])

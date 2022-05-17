@@ -263,13 +263,10 @@ for counter3 in range(len(toBeAdded)):
     pyautogui.hotkey('ctrl','r')
     basic(True)
 
-    #Put all files with STEM - name into a zip folder
-    myZipFile = ZipFile('beatTitle.zip', 'w')
-    makeZipFile(name)
-    allStemFiles = next(walk("C:\\Users\\samlb\\Documents\\Image-Line\\FL Studio\\Projects\\finished\\UPLOAD"), (None, None, []))[2]
+    #Put all files stem files into a zip folder
+    makeZipFile(name, beatTitle)
 
-    myZipFile
-
+    #Banish used files
     with open('rendered.txt', 'a') as f:
         f.writelines(''.join(str(toBeAdded[counter3])))
     with open('rendered.txt', 'a') as f:
