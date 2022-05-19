@@ -182,7 +182,7 @@ for counter3 in range(len(toBeAdded)):
     #Song title tags
     tooLong = True
     while(tooLong == True):
-        titleTags = str(input("Give the beat some adjectives (for beatstars title; should include: No Drums Type Beat): "))
+        titleTags = str(input("Give the beat some adjectives (for beatstars title; should include: Type Beat No Drums): "))
         bad = False
         if len('" "'+name+titleTags) > 60:
             length = len(titleTags)+len(name)+3
