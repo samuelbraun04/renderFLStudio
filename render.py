@@ -232,6 +232,8 @@ for counter3 in range(len(toBeAdded)):
 
     beatTitle = name.strip()+' - '+str(bpm)+' - '+key.strip()+' - '+titleTags.strip()+' ['+tag1.strip()+', '+tag2.strip()+', '+tag3.strip()+']'
 
+    str(input("Is the tag on Track 10 and are there at least of 5 them playing throughout the song? (Hit any key to continue): "))
+
     print("Rendering and saving process beginning in 5 seconds. Get FL Studio ready (put it on big monitor full screened).")
     sleep(5)
 
@@ -283,9 +285,9 @@ print("Closing program.")
 print("All the matching STEMS files have been automatically been put into zip folders.")
 
 while(1):
-    uploadAnswer = str(input("Would you like to upload these files to Beatstars and Youtube?: "))
+    uploadAnswer = str(input("Would you like to upload these files to Beatstars and Youtube? (Y or N): "))
     if uploadAnswer == 'Y':
-        exec(open(r'C:\Users\samlb\Documents\BEATSTARS_PYTHON_SELENIUM_CURRENT\uploadToBeatstars.py').read())
+        exec(open(r'C:\Users\samlb\Documents\BEATSTARS_PYTHON_SELENIUM_CURRENT\runProgram.py').read())
         break
     elif uploadAnswer == 'N':
         break
