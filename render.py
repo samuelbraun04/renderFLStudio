@@ -1,3 +1,4 @@
+from http.client import PAYMENT_REQUIRED
 import pyautogui
 from time import sleep
 from re import sub
@@ -7,7 +8,6 @@ import random
 import sys
 from zipfile import ZipFile
 from makeZip import makeZipFile
-#import uploadToBeatstars
 
 def basic(split):
     sleep(2)
@@ -51,6 +51,7 @@ def basic(split):
 
 def save(saveAs):
     pyautogui.click(pyautogui.locateOnScreen('startPoint.png'))
+    pyautogui.hotkey('alt', 'f12')
     sleep(1)
     if saveAs == True:
         pyautogui.hotkey('shift','ctrl','s')
@@ -69,6 +70,10 @@ def save(saveAs):
     sleep(0.5)
     pyautogui.press('ENTER')
     sleep(3)
+
+def reset():
+    pyautogui.moveTo(pyautogui.locateOnScreen('startPoint.png'))
+    pyautogui.hotkey('alt', 'f12')
 
 keepGoing = True
 illegalChars = ["<",">",":",'"',"/","\\","|","?","*"]
@@ -113,10 +118,7 @@ for counter3 in range(len(toBeAdded)):
     if ((pyautogui.locateOnScreen('doYouSave.png') != None) or (pyautogui.locateOnScreen('doYouSaveTwo.png') != None) or (pyautogui.locateOnScreen('doYouSaveThree.png') != None) or (pyautogui.locateOnScreen('doYouSaveFour.png') != None) or (pyautogui.locateOnScreen('doYouSaveFive.png') != None) or (pyautogui.locateOnScreen('doYouSaveSix.png') != None)):
         print('FL Studio needs to be saved')
         sleep(1)
-        if pyautogui.locateOnScreen('saveVersionOne.png') != None:
-            pyautogui.click(pyautogui.locateOnScreen('saveVersionOne.png'))
-        if pyautogui.locateOnScreen('saveVersionTwo.png') != None:
-            pyautogui.click(pyautogui.locateOnScreen('saveVersionTwo.png'))
+        pyautogui.press('enter')
 
         sleep(3)
 
@@ -135,6 +137,8 @@ for counter3 in range(len(toBeAdded)):
             sleep(0.5)
             pyautogui.press('ENTER')
             sleep(1)
+        else:
+            print("Does not need to be named")
 
     #File "name"
     with open('new.txt') as f:
@@ -239,15 +243,20 @@ for counter3 in range(len(toBeAdded)):
 
     #Save the .flp
     save(True)
+    startingPoint = pyautogui.locateOnScreen('startPoint.png')
+
+    #Make sure at top of playlist
+    reset()
+    pyautogui.click(1907,148)
 
     #Get mp3
-    pyautogui.click(pyautogui.locateOnScreen('startPoint.png'))
+    reset()
     sleep(1)
     pyautogui.hotkey('ctrl','shift','r')
     basic(False)
 
     #Get wav
-    pyautogui.click(pyautogui.locateOnScreen('altStartPoint.png'))
+    reset()
     sleep(1)
     counter = 1
     for pos in (pyautogui.locateAllOnScreen('On.png') or pyautogui.locateAllOnScreen('Off.png')):
@@ -256,13 +265,13 @@ for counter3 in range(len(toBeAdded)):
             break
         counter = counter+1
     sleep(0.5)
-    pyautogui.click(pyautogui.locateOnScreen('startPoint.png'))
+    pyautogui.click(startingPoint)
     sleep(0.5)
     pyautogui.hotkey('ctrl','r')
     basic(False)
 
     #Get zip (wav)
-    pyautogui.click(pyautogui.locateOnScreen('altStartPoint.png'))
+    reset()
     sleep(1)
     pyautogui.hotkey('ctrl','r')
     basic(True)
@@ -284,15 +293,15 @@ for counter3 in range(len(toBeAdded)):
 print("Closing program.")
 print("All the matching STEMS files have been automatically been put into zip folders.")
 
-while(1):
-    uploadAnswer = str(input("Would you like to upload these files to Beatstars and Youtube? (Y or N): "))
-    if uploadAnswer == 'Y':
-        exec(open(r'C:\Users\samlb\Documents\BEATSTARS_PYTHON_SELENIUM_CURRENT\runProgram.py').read())
-        break
-    elif uploadAnswer == 'N':
-        break
-    else:
-        print("Please type either Y or N (cap sensitive")
+# while(1):
+#     uploadAnswer = str(input("Would you like to upload these files to Beatstars and Youtube? (Y or N): "))
+#     if uploadAnswer == 'Y':
+#         exec(open(r'C:\Users\samlb\Documents\BEATSTARS_PYTHON_SELENIUM_CURRENT\runProgram.py').read())
+#         break
+#     elif uploadAnswer == 'N':
+#         break
+#     else:
+#         print("Please type either Y or N (cap sensitive")
 
-print("You will never see this instance of this executable again in 5 seconds, so say farewell.")
-sleep(5)
+print("You will never see this instance of this executable again in 3 seconds, so say farewell.")
+sleep(3)
