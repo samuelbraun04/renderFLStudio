@@ -1,12 +1,13 @@
-from http.client import PAYMENT_REQUIRED
+# from http.client import PAYMENT_REQUIRED
 import pyautogui
 from time import sleep
 from re import sub
 from os import walk
-import os
-import random
-import sys
-from zipfile import ZipFile
+from os import startfile
+from os import chdir
+from random import randint
+from sys import exit
+# from zipfile import ZipFile
 from makeZip import makeZipFile
 
 def basic(split):
@@ -29,6 +30,7 @@ def basic(split):
     sleep(0.5)
     pyautogui.press('ENTER')
     sleep(1)
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
     if split == False:
         if (pyautogui.locateOnScreen('splitOn.png')) == None:
             pass
@@ -43,6 +45,7 @@ def basic(split):
     sleep(1)
     pyautogui.click(1117,798)
     stillRendering = True
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
     while(stillRendering == True):
         if pyautogui.locateOnScreen('stillRendering.png') == None:
             stillRendering = False
@@ -50,6 +53,7 @@ def basic(split):
             sleep(1)
 
 def save(saveAs):
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
     pyautogui.click(pyautogui.locateOnScreen('startPoint.png'))
     pyautogui.hotkey('alt', 'f12')
     sleep(1)
@@ -72,6 +76,7 @@ def save(saveAs):
     sleep(3)
 
 def reset():
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
     pyautogui.moveTo(pyautogui.locateOnScreen('startPoint.png'))
     pyautogui.hotkey('alt', 'f12')
 
@@ -79,6 +84,7 @@ keepGoing = True
 illegalChars = ["<",">",":",'"',"/","\\","|","?","*"]
 
 #Get used flps
+chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\textFiles')
 textFile = open('rendered.txt', 'r')
 lines = textFile.readlines()
 lines = str(lines)
@@ -97,13 +103,14 @@ for counter2 in range(len(files)):
         toBeAdded.append(files[counter2])
 
 if len(toBeAdded) == 0:
-    sys.exit("No files to render")
+    exit("No files to render")
 
 for counter3 in range(len(toBeAdded)):
-    os.startfile(r"C:\\Users\\samlb\\Documents\\Image-Line\\FL Studio\\Projects\\finished\\toBeRendered\\"+str(toBeAdded[counter3]))
+    startfile(r"C:\\Users\\samlb\\Documents\\Image-Line\\FL Studio\\Projects\\finished\\toBeRendered\\"+str(toBeAdded[counter3]))
 
     getOut = False
     while(getOut == False):
+        chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
         if pyautogui.locateOnScreen('isItOpen.png') == None:
             print("FL Studio not open yet")
             sleep(1)
@@ -115,12 +122,14 @@ for counter3 in range(len(toBeAdded)):
 
     print("The following "+str(len(toBeAdded)-counter3)+" files still need to be rendered: ")
     print(toBeAdded[counter3:])
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
     if ((pyautogui.locateOnScreen('doYouSave.png') != None) or (pyautogui.locateOnScreen('doYouSaveTwo.png') != None) or (pyautogui.locateOnScreen('doYouSaveThree.png') != None) or (pyautogui.locateOnScreen('doYouSaveFour.png') != None) or (pyautogui.locateOnScreen('doYouSaveFive.png') != None) or (pyautogui.locateOnScreen('doYouSaveSix.png') != None)):
         print('FL Studio needs to be saved')
         sleep(1)
         pyautogui.press('enter')
 
         sleep(3)
+        chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
 
         if pyautogui.locateOnScreen('needsToBeNamedTwo.png') != None:
             print("Needs to be named")
@@ -133,7 +142,7 @@ for counter3 in range(len(toBeAdded)):
             pyautogui.hotkey('ctrl', 'a')
             pyautogui.press('BACKSPACE')
             sleep(1)
-            pyautogui.write(str(random.randint(1000000000,9999999999)))
+            pyautogui.write(str(randint(1000000000,9999999999)))
             sleep(0.5)
             pyautogui.press('ENTER')
             sleep(1)
@@ -141,6 +150,7 @@ for counter3 in range(len(toBeAdded)):
             print("Does not need to be named")
 
     #File "name"
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\textFiles')
     with open('new.txt') as f:
         girlNames = f.read()
     girlNames = sub( r"([A-Z])", r" \1", girlNames).split()
@@ -154,6 +164,7 @@ for counter3 in range(len(toBeAdded)):
         else:
             name = girlNames[counter]
             break
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\textFiles')
     with open('old.txt', 'w') as f:
         usedString = usedString+name
         f.write(usedString)
@@ -243,6 +254,7 @@ for counter3 in range(len(toBeAdded)):
 
     #Save the .flp
     save(True)
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
     startingPoint = pyautogui.locateOnScreen('startPoint.png')
 
     #Make sure at top of playlist
@@ -259,6 +271,7 @@ for counter3 in range(len(toBeAdded)):
     reset()
     sleep(1)
     counter = 1
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\imagesForSearch')
     for pos in (pyautogui.locateAllOnScreen('On.png') or pyautogui.locateAllOnScreen('Off.png')):
         if counter == 10:
             pyautogui.click(pos)
@@ -280,6 +293,7 @@ for counter3 in range(len(toBeAdded)):
     makeZipFile(name, beatTitle)
 
     #Banish used files
+    chdir(r'C:\Users\samlb\Documents\FLSTUDIO20_PYTHON_PYAUTOGUI\textFiles')
     with open('rendered.txt', 'a') as f:
         f.writelines(''.join(str(toBeAdded[counter3])))
     with open('rendered.txt', 'a') as f:
